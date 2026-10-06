@@ -1,0 +1,15 @@
+.bar {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(251, 248, 241, .92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px dashed var(--rule);
+}
+.inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 14px; padding-bottom: 14px; }
+.logo { font-size: 32px; font-weight: 700; line-height: 1; color: var(--ink); }
+.logo:hover { color: var(--ink); text-decoration: none; }
+.right { display: flex; gap: 26px; align-items: center; font-size: 15px; font-weight: 600; }
+.links { display: flex; gap: 26px; }
+.links a { color: var(--ink); }
+.links a:hover { color: var(--magenta); text-decoration: none; }
+.cta { padding: 10px 20px; }
+.cta:hover { transform: translateY(-1px); }
+@media (max-width: 819px) { .links { display: none; } }
