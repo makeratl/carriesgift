@@ -15,9 +15,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title,
   description,
-  openGraph: { title, description, url: '/', siteName: "Carrie's Gift", type: 'website' },
+  alternates: { canonical: '/' },
+  openGraph: { title, description, url: '/', siteName: "Carrie's Gift", type: 'website', locale: 'en_US' },
   twitter: { card: 'summary_large_image', title, description },
-  icons: { icon: '/icon.svg' },
+  // Icons come from app/icon.svg, app/apple-icon.png and app/favicon.ico.
 };
 
 export const viewport: Viewport = { themeColor: '#fbf8f1' };

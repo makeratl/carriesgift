@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import { WHO_COLOR } from '@/lib/content';
 import type { Update } from '@/lib/data';
 import s from './Sections.module.css';
+import checkup from '@/public/carrie-checkup.jpg';
 
 const CARRIE_PLACEHOLDER: Update = {
   id: 'carrie-soon', who: 'Carrie', date_label: 'After Oct 20', title: 'First update from recovery',
@@ -15,6 +17,10 @@ export default function Updates({ updates }: { updates: Update[] }) {
         <div className={`hand ${s.kickerM}`}>from the recovery couch</div>
         <h2 className="h2">Updates from Steven and Carrie</h2>
         <p className={s.intro}>Short notes before and after surgery. Carrie may add her own once she&apos;s back on her feet.</p>
+        <figure className={s.updatePhoto}>
+          <Image src={checkup} alt="Carrie grinning while wearing a blood pressure monitor" placeholder="blur" sizes="(max-width: 520px) 80vw, 300px" />
+          <figcaption className="hand">pre-op checks, all smiles</figcaption>
+        </figure>
       </div>
       <div className={s.updateList}>
         {list.map(u => (

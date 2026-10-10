@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { CHARITY } from '@/lib/config';
 import GiftButton from './GiftButton';
 import styles from './Hero.module.css';
-import carrie from '@/public/carrie.jpg';
+import carrie from '@/public/carrie-mug.jpg';
 
 export default function Hero() {
   return (
@@ -21,7 +21,7 @@ export default function Hero() {
       </div>
       <div className={styles.photoWrap}>
         <div className={styles.polaroid}>
-          <Image src={carrie} alt="Carrie" priority placeholder="blur" sizes="(max-width: 520px) 90vw, 432px" className={styles.photo} />
+          <Image src={carrie} alt="Carrie sipping from a Frida Kahlo mug" priority placeholder="blur" sizes="(max-width: 520px) 90vw, 432px" className={styles.photo} />
           <div className={`hand ${styles.caption}`}>Oct 20: surgery. Nov 3: cake.</div>
           <div className={styles.tapeTop} aria-hidden />
         </div>

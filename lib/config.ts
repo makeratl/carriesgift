@@ -1,6 +1,6 @@
 export const CHARITY = process.env.NEXT_PUBLIC_CHARITY_NAME || 'National Kidney Foundation';
 export const FUNDRAISER_URL = process.env.NEXT_PUBLIC_FUNDRAISER_URL || '';
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://gift.carrieburns.net';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://kidney.carrieburns.net';
 export const GOAL = 5000;
 export const BEAD_VALUE = 100;
 export const NOTE_MAX = 180;

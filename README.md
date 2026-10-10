@@ -13,7 +13,7 @@ Design reference: `design/` (Claude Design handoff; open `design/prototype/*.dc.
 
 ## Setup
 1. Create a Supabase project. Run `supabase/migrations/20261005000000_init.sql` (SQL editor or `supabase db push`).
-2. Supabase → Auth → URL configuration: add `https://gift.carrieburns.net/auth/callback` and `http://localhost:3077/auth/callback` to redirect URLs.
+2. Supabase → Auth → URL configuration: add `https://kidney.carrieburns.net/auth/callback` and `http://localhost:3077/auth/callback` to redirect URLs.
 3. `cp .env.example .env.local` and fill it in. Same vars go into Vercel → Settings → Environment Variables.
 4. `npm run dev` (port 3077). Without Supabase env vars the page renders with demo data.
 

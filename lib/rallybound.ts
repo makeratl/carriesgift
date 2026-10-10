@@ -13,7 +13,7 @@ export function parseRaised(html: string): number | null {
 export async function fetchRaised(url: string): Promise<number | null> {
   if (!/rallybound\.org/.test(url)) return null;
   try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(4000), headers: { 'user-agent': "CarriesGift/1.0 (+https://gift.carrieburns.net)" }, cache: 'no-store' });
+    const res = await fetch(url, { signal: AbortSignal.timeout(4000), headers: { 'user-agent': "CarriesGift/1.0 (+https://kidney.carrieburns.net)" }, cache: 'no-store' });
     if (!res.ok) return null;
     return parseRaised(await res.text());
   } catch {
