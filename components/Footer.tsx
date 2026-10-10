@@ -8,7 +8,7 @@ export default function Footer() {
       <div className={`wrap ${styles.inner}`}>
         <ShareButtons className={styles.share} linkClass={styles.link} copyClass={styles.copy} />
         <div className={styles.disclaimer}>
-          Every bead goes directly to {CHARITY}, a registered 501(c)(3), through its own tribute page. We never hold or handle donations.
+          Every bead goes directly to the {CHARITY}, a registered 501(c)(3), through its own tribute page. We never hold or handle donations.
         </div>
       </div>
     </footer>

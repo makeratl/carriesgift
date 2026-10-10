@@ -2,7 +2,6 @@
 // browser agree no matter where a visitor is.
 
 export const TZ = 'America/New_York';
-export const PREOP = '2026-10-13';
 export const SURGERY = '2026-10-20';
 export const BIRTHDAY = '2026-11-03';
 
@@ -25,13 +24,11 @@ export function birthdayLabel(today: string) {
 
 /** Statuses for the seven timeline steps, in order. */
 export function timelineStatuses(today: string): Status[] {
-  const postPreop = daysUntil(PREOP, today) <= 0;
   const postSurgery = daysUntil(SURGERY, today) <= 0;
   const bdayPassed = daysUntil(BIRTHDAY, today) <= 0;
   return [
-    'done', 'done', 'done',
-    postPreop ? 'done' : 'next',
-    postSurgery ? 'done' : postPreop ? 'next' : 'ahead',
+    'done', 'done', 'done', 'done',
+    postSurgery ? 'done' : 'next',
     postSurgery ? 'next' : 'ahead',
     bdayPassed ? 'done' : 'ahead',
   ];

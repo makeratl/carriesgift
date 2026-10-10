@@ -30,7 +30,7 @@ export default function Necklace() {
   const n = layoutNecklace(w, filled);
   const left = BEAD_COUNT - filled;
   const leftLabel = left > 0 ? `${left} beads to go` : 'Her necklace is complete!';
-  const kicker = <div className={`hand ${styles.kicker}`}>every bead is $100 for {CHARITY}</div>;
+  const kicker = <div className={`hand ${styles.kicker}`}>every bead is $100 for the {CHARITY}</div>;
   const title = 'Help us string her necklace';
 
   return (
