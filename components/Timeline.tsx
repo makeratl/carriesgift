@@ -17,14 +17,14 @@ export default function Timeline() {
   return (
     <section className={s.band}>
       <div className={s.bandInner}>
-        <h2 className="h3">Her road to October 20</h2>
+        <h2 className="h3">Her road to donating</h2>
         <ol className={s.timeline} style={{ listStyle: 'none', padding: 0, margin: '32px 0 0' }}>
           {TIMELINE.map((t, i) => {
             const look = LOOK[statuses[i]];
             return (
               <li key={t.k} className={s.tStep}>
                 <div className={s.tDot} style={{ background: look.dot, borderColor: look.ring }} />
-                <div className={s.tTag} style={{ color: look.color }}>{look.tag}</div>
+                <div className={s.tTag} style={{ color: look.color }}>{look.tag}{t.when && ` · ${t.when}`}</div>
                 <div className={s.tTitle}>{t.k}</div>
                 <div className={s.tBody}>{t.d}</div>
               </li>

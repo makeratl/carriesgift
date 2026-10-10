@@ -121,8 +121,8 @@ export default function GiftSheet({ onClose }: { onClose: () => void }) {
               <span>{impact}</span>
             </div>
             {err && <div className={styles.error} role="alert">{err}</div>}
-            <button type="button" onClick={toCharity} className={`btn-primary ${styles.big}`}>Continue to {CHARITY}</button>
-            <div className={styles.fine}>You&apos;ll finish on {CHARITY}&apos;s secure tribute page. Your tax receipt comes from them.</div>
+            <button type="button" onClick={toCharity} className={`btn-primary ${styles.big}`}>Continue to the {CHARITY}</button>
+            <div className={styles.fine}>You&apos;ll finish on the {CHARITY}&apos;s secure tribute page. Your tax receipt comes from them.</div>
           </div>
         )}
 
@@ -137,7 +137,7 @@ export default function GiftSheet({ onClose }: { onClose: () => void }) {
             <div className={styles.title} style={{ fontSize: 24, marginTop: 0 }}>Did your gift go through?</div>
             <div className={styles.body}>
               {FUNDRAISER_URL
-                ? `${CHARITY}'s tribute page opened in a new tab. Once you've given there, come back and tell us so we can pin it to Carrie's wall.`
+                ? `The ${CHARITY}'s tribute page opened in a new tab. Once you've given there, come back and tell us so we can pin it to Carrie's wall.`
                 : `The tribute page isn't live yet. Check back soon to finish your ${fmtUSD(amt)} gift.`}
             </div>
             <button type="button" onClick={() => { setErr(''); setStep(3); }} className={`btn-primary ${styles.big}`}>Yes, I gave</button>

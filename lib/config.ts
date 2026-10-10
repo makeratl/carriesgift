@@ -8,4 +8,4 @@ export const NOTE_MAX = 180;
 export const fmtUSD = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
 
 export const shareMessage = (url: string) =>
-  `For Carrie's birthday, help string her a necklace of gifts for ${CHARITY}. She's donating a kidney to a stranger on Oct 20. ${url}`;
+  `For Carrie's birthday, help string her a necklace of gifts for the ${CHARITY}. She's donating a kidney to a stranger on Oct 20. ${url}`;

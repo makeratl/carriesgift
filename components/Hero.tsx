@@ -17,7 +17,7 @@ export default function Hero() {
           <GiftButton from="hero" className={`btn-primary ${styles.primary}`}>Add a bead: give $100</GiftButton>
           <a href="#wall" className={`btn-outline ${styles.secondary}`}>Leave a birthday note</a>
         </div>
-        <div className={styles.fine}>Any amount helps. You give on {CHARITY}&apos;s own secure page, so we never handle the money.</div>
+        <div className={styles.fine}>Any amount helps. You give on the {CHARITY}&apos;s own secure page, so we never handle the money, and you receive a tax-deductible donation receipt.</div>
       </div>
       <div className={styles.photoWrap}>
         <div className={styles.polaroid}>
