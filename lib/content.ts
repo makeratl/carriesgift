@@ -17,7 +17,7 @@ export const FAQ: [string, string][] = [
   ['Can you live a normal life with one kidney?', 'Yes. Most living donors go on to live full, healthy lives. The remaining kidney grows and takes on more of the work.'],
   ['How does helping a stranger help her friend?', 'Through the National Kidney Registry\u2019s voucher program, a donor gives to a compatible stranger, and the person they name receives a voucher. That moves them to the living donor list, where the search begins for a living donor who matches them.'],
   ['What does recovery look like?', 'Usually one to three days in the hospital, a few weeks off work, and no heavy lifting for about six weeks. Everyone heals differently.'],
-  ["Who pays for a living donor's costs?", "The recipient's insurance covers the medical side. Travel, lodging and lost wages often aren't covered, which is why programs like NLDAC exist."],
+  ["Who pays for a living donor's costs?", "The recipient's insurance covers the medical side. Travel, lodging and lost wages often aren't covered, which is why programs like the National Kidney Registry\u2019s Donor Shield exist."],
   ['Where does my donation go?', `Straight to the ${CHARITY}, a registered 501(c)(3), through its own tribute fundraiser. You get the receipt from them, and we never hold the money.`],
 ];
 
@@ -30,9 +30,9 @@ export const FACTS = [
 
 export const LINKS = [
   { title: 'Register as a donor', desc: 'Sign up as an organ, eye and tissue donor in a couple of minutes.', host: 'registerme.org', url: 'https://registerme.org', color: C.y },
-  { title: 'Explore living donation', desc: 'Learn what being a living kidney donor involves.', host: 'lkdn.org', url: 'https://www.lkdn.org', color: C.t },
+  { title: 'Explore living donation', desc: 'Learn what being a living kidney donor involves.', host: 'kidney.org', url: 'https://www.kidney.org/kidney-topics/becoming-living-donor', color: C.t },
   { title: 'How voucher donation works', desc: 'The program that lets one gift help a loved one later.', host: 'kidneyregistry.org', url: 'https://www.kidneyregistry.org', color: C.m },
-  { title: 'Help for donor costs', desc: 'Travel and lodging help for living donors.', host: 'livingdonorassistance.org', url: 'https://www.livingdonorassistance.org', color: C.y },
+  { title: 'Help for donor costs', desc: 'Lost wages, travel and lodging reimbursed for living donors.', host: 'donorshield.com', url: 'https://www.donorshield.com/kidney-donors/', color: C.y },
 ];
 
 export const STEPS = [
