@@ -54,6 +54,7 @@
 }
 .faqSign { font-size: 24px; color: var(--magenta); font-weight: 500; flex: none; }
 .faqA { font-size: 16px; line-height: 1.6; color: var(--body); padding: 0 0 20px; text-wrap: pretty; animation: fadeIn .25s ease; }
+.faqA a { text-decoration: underline; text-underline-offset: 2px; }
 
 /* Join her */
 .ink { background: var(--ink); color: var(--paper); padding: clamp(56px, 8vw, 80px) var(--pad-x); }
