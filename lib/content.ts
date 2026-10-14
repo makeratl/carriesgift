@@ -4,7 +4,7 @@ import { CHARITY } from './config';
 export const C = { y: '#f6c945', t: '#2fb5b8', m: '#e0478f' } as const;
 
 export const TIMELINE: { when?: string; k: string; d: string }[] = [
-  { when: 'Oct 2025', k: 'The Ask', d: "A friend needed a kidney. A BMI of 39 (down from 48 in Dec 2024) wouldn't even allow submission, so she added \u201cbe healthy enough to donate a kidney\u201d to her health goals." },
+  { when: 'Oct 2025', k: 'The Ask', d: "Juliette posted on Facebook about needing a kidney. Carrie's BMI of 39 (down from 48 in Dec 2024) wouldn't even allow submission, so she added \u201cbe healthy enough to donate a kidney\u201d to her health goals." },
   { when: 'May 2026', k: 'Testing', d: 'BMI of 34.5 reached and application accepted. Testing (and waiting) at Piedmont Transplant Center began. They make very sure you\u2019re healthy enough to give.' },
   { when: 'Aug 2026', k: 'Approved', d: 'Cleared by the transplant team. The search began for a blood and tissue match through National Kidney Registry affiliates.' },
   { when: 'Sept 2026', k: 'Match Found', d: 'A match turned up in Florida, someone waiting for a living donor (like her friend), and the surgery date was set.' },
