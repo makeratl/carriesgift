@@ -39,7 +39,7 @@ export const LINKS = [
 
 export const STEPS = [
   { n: 1, bg: C.y, fg: '#2b2620', title: 'Carrie gives', body: 'After months of testing, approval and the search for a match, her kidney goes to a stranger on the living donor list who is a strong match.' },
-  { n: 2, bg: C.t, fg: '#2b2620', title: 'Her friend moves up', body: 'Because Carrie donated, her friend receives a voucher and moves to the living donor list, and the search begins for a living donor who matches her.' },
+  { n: 2, bg: C.t, fg: '#2b2620', title: 'Her friend moves up', body: 'Because Carrie donated, Juliette receives a voucher and moves to the living donor list, and the search begins for a living donor who matches her.' },
   { n: 3, bg: C.m, fg: '#fff', title: 'Two lives transformed', body: "One act of generosity leads to two transplants, and sometimes a whole chain of them (if sites like this one do their job). It doesn't cost anything to [find out if you can donate](https://www.kidneyregistry.com/for-donors/kidney-donation-blog/does-it-cost-anything-to-get-tested-as-a-living-kidney-donor/)!" },
 ];
 
