@@ -19,7 +19,7 @@ export default function Updates({ updates }: { updates: Update[] }) {
         <p className={s.intro}>Short notes before and after surgery. Carrie may add her own once she&apos;s back on her feet.</p>
         <figure className={s.updatePhoto}>
           <Image src={checkup} alt="Carrie grinning while wearing a blood pressure monitor" placeholder="blur" sizes="(max-width: 520px) 80vw, 300px" />
-          <figcaption className="hand">pre-op checks, all smiles</figcaption>
+          <figcaption className="hand">pre-op checks, mostly smiles ;)</figcaption>
         </figure>
       </div>
       <div className={s.updateList}>
