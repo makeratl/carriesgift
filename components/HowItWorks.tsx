@@ -1,5 +1,6 @@
 import { STEPS } from '@/lib/content';
 import s from './Sections.module.css';
+import { withLinks } from './withLinks';
 
 export default function HowItWorks() {
   return (
@@ -11,7 +12,7 @@ export default function HowItWorks() {
           <div key={st.n} className={s.stepCard}>
             <div className={s.stepNum} style={{ background: st.bg, color: st.fg }}>{st.n}</div>
             <div className={s.stepTitle}>{st.title}</div>
-            <div className={s.stepBody}>{st.body}</div>
+            <div className={s.stepBody}>{withLinks(st.body)}</div>
           </div>
         ))}
       </div>

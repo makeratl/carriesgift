@@ -3,14 +3,7 @@
 import { useState } from 'react';
 import { FAQ } from '@/lib/content';
 import s from './Sections.module.css';
-
-// Turns `[text](url)` in an answer into an external link.
-function withLinks(text: string) {
-  return text.split(/(\[[^\]]+\]\([^)]+\))/).map((part, i) => {
-    const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-    return m ? <a key={i} href={m[2]} target="_blank" rel="noopener">{m[1]}</a> : part;
-  });
-}
+import { withLinks } from './withLinks';
 
 export default function Faq() {
   const [open, setOpen] = useState(0);
