@@ -33,7 +33,7 @@ export const FACTS = [
 export const LINKS = [
   { title: 'Register as a donor', desc: 'Sign up as an organ, eye and tissue donor in a couple of minutes.', host: 'registerme.org', url: 'https://registerme.org', color: C.y },
   { title: 'Explore living donation', desc: 'Learn what being a living kidney donor involves.', host: 'kidney.org', url: 'https://www.kidney.org/kidney-topics/becoming-living-donor', color: C.t },
-  { title: 'How voucher donation works', desc: 'The program that lets one gift help a loved one later.', host: 'kidneyregistry.org', url: 'https://www.kidneyregistry.org', color: C.m },
+  { title: 'How voucher donation works', desc: 'The program that lets one gift help a loved one later.', host: 'kidneyregistry.com', url: 'https://www.kidneyregistry.com/for-donors/voucher-program/', color: C.m },
   { title: 'Help for donor costs', desc: 'Lost wages, travel and lodging reimbursed for living donors.', host: 'donorshield.com', url: 'https://www.donorshield.com/kidney-donors/', color: C.y },
 ];
 
