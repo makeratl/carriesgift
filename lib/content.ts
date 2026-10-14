@@ -8,7 +8,7 @@ export const TIMELINE: { when?: string; k: string; d: string }[] = [
   { when: 'May 2026', k: 'Testing', d: 'BMI of 34.5 reached and application accepted. Testing (and waiting) at Piedmont Transplant Center began. They make very sure you\u2019re healthy enough to give.' },
   { when: 'Aug 2026', k: 'Approved', d: 'Cleared by the transplant team. The search began for a blood and tissue match through National Kidney Registry affiliates.' },
   { when: 'Sept 2026', k: 'Match Found', d: 'A match turned up in Florida, someone waiting for a living donor (like her friend), and the surgery date was set.' },
-  { when: 'Oct 20', k: 'Surgery Day', d: 'Pre-op on Oct 13 locks in the final arrangements. Then laparoscopic surgery at Piedmont, and her spare kidney heads to the beach. Pretty fitting.' },
+  { when: 'Oct 20', k: 'Surgery Day', d: 'Pre-op on Oct 13 locked in the final arrangements. Then laparoscopic surgery at Piedmont, and her left foster kidney heads to the beach. Pretty fitting.' },
   { k: 'Recovery', d: 'One to two days in the hospital (gotta get walking and close those rings), then a few weeks easing off strength training while her body heals.' },
   { when: 'Nov 3', k: 'Her Birthday', d: 'By now \u201cSolo Mio,\u201d her remaining kidney, has picked up the slack. The hope: her spare kidney is thriving at its new job, and her friend has a match and a surgery date set, or is close to it.' },
 ];
