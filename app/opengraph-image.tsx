@@ -20,7 +20,7 @@ const STRAND = Array.from({ length: 15 }, (_, i) => {
 
 export default async function Image() {
   const [photo, figtree600, figtree800, caveat] = await Promise.all([
-    readFile(join(process.cwd(), 'public/carrie.jpg')).then(b => sharp(b).resize(400, 400).jpeg({ quality: 82 }).toBuffer()),
+    readFile(join(process.cwd(), 'public/carrie-piedmont.jpg')).then(b => sharp(b).resize(400, 400).jpeg({ quality: 82 }).toBuffer()),
     readFile(join(process.cwd(), 'assets/fonts/figtree-600.woff')),
     readFile(join(process.cwd(), 'assets/fonts/figtree-800.woff')),
     readFile(join(process.cwd(), 'assets/fonts/caveat-700.woff')),
