@@ -39,6 +39,7 @@
 .updateDate { font-size: 14px; color: var(--faint); }
 .updateTitle { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
 .updateBody { font-size: 16px; line-height: 1.55; color: var(--body); text-wrap: pretty; white-space: pre-line; }
+.updateImg { display: block; width: 100%; height: auto; margin-top: 16px; border-radius: 12px; }
 
 /* Learn */
 .learn { padding-bottom: clamp(64px, 9vw, 88px); gap: clamp(32px, 5vw, 56px); }

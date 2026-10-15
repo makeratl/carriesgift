@@ -3,6 +3,7 @@
 import { updateTag } from 'next/cache';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { MAX_UPLOAD, UPDATE_PHOTOS, processPhoto } from '@/lib/photo';
 import { db } from '@/lib/supabase/admin';
 import { adminEmails, authClient, currentAdmin } from '@/lib/supabase/server';
 
@@ -45,22 +46,44 @@ export async function saveStats(form: FormData) {
   updateTag('stats');
 }
 
-export async function postUpdate(form: FormData) {
+export async function postUpdate(_: unknown, form: FormData): Promise<{ ok?: boolean; error?: string }> {
   const c = await requireAdmin();
   const who = String(form.get('who'));
   const title = String(form.get('title') ?? '').trim(), body = String(form.get('body') ?? '').trim();
   const date_label = String(form.get('date_label') ?? '').trim()
     || new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric' }).format(new Date());
-  if (!title || !body || !['Steven', 'Carrie'].includes(who)) return;
-  const { error } = await c.from('updates').insert({ who, title, body, date_label });
-  if (error) throw error;
+  if (!title || !body || !['Steven', 'Carrie'].includes(who)) return { error: 'Title and text are required.' };
+
+  const file = form.get('photo');
+  let image: { image_path: string; image_alt: string; image_w: number; image_h: number } | null = null;
+  if (file instanceof File && file.size > 0) {
+    if (!file.type.startsWith('image/')) return { error: 'That file isn\u2019t a photo.' };
+    if (file.size > MAX_UPLOAD) return { error: 'That photo is too large. Try a smaller one.' };
+    let photo;
+    try { photo = await processPhoto(Buffer.from(await file.arrayBuffer())); }
+    catch { return { error: 'Couldn\u2019t read that photo. Try a JPEG or PNG.' }; }
+    const path = `${crypto.randomUUID()}.jpg`;
+    const up = await c.storage.from(UPDATE_PHOTOS).upload(path, photo.data, { contentType: 'image/jpeg', cacheControl: '31536000' });
+    if (up.error) return { error: `Photo upload failed: ${up.error.message}` };
+    const alt = String(form.get('image_alt') ?? '').trim().slice(0, 300) || title;
+    image = { image_path: path, image_alt: alt, image_w: photo.width, image_h: photo.height };
+  }
+
+  const { error } = await c.from('updates').insert({ who, title, body, date_label, ...image });
+  if (error) {
+    if (image) await c.storage.from(UPDATE_PHOTOS).remove([image.image_path]);
+    return { error: error.message };
+  }
   updateTag('updates');
+  return { ok: true };
 }
 
 export async function deleteUpdate(form: FormData) {
   const c = await requireAdmin();
-  const { error } = await c.from('updates').delete().eq('id', String(form.get('id')));
+  const { data, error } = await c.from('updates').delete().eq('id', String(form.get('id'))).select('image_path');
   if (error) throw error;
+  const paths = (data ?? []).map(r => r.image_path).filter(Boolean);
+  if (paths.length) await c.storage.from(UPDATE_PHOTOS).remove(paths);
   updateTag('updates');
 }
 

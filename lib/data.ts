@@ -1,12 +1,16 @@
 import 'server-only';
 import { unstable_cache } from 'next/cache';
 import { FUNDRAISER_URL } from './config';
+import { UPDATE_PHOTOS } from './photo';
 import { fetchRaised } from './rallybound';
 import { db } from './supabase/admin';
 
 export type Stats = { raised: number; gifts: number; registered: number; notes: number };
 export type Note = { id: string; name: string; body: string; created_at: string; via_gift?: boolean };
-export type Update = { id: string; who: string; title: string; body: string; date_label: string };
+export type Update = {
+  id: string; who: string; title: string; body: string; date_label: string;
+  image?: { src: string; alt: string; width: number; height: number };
+};
 
 export const PAGE_SIZE = 24;
 
@@ -55,9 +59,12 @@ export const getUpdates = unstable_cache(async (): Promise<Update[]> => {
   if (!c) return [
     { id: 'u1', who: 'Steven', date_label: 'Oct 5', title: 'Why this page exists', body: "Carrie's surgery is October 20 and her birthday is November 3. Instead of gifts, we're asking for support in her name: a bead for her necklace, a donor registration, or a note on her wall." },
   ];
-  const { data, error } = await c.from('updates').select('id, who, title, body, date_label').order('created_at', { ascending: false });
+  const { data, error } = await c.from('updates')
+    .select('id, who, title, body, date_label, image_path, image_alt, image_w, image_h').order('created_at', { ascending: false });
   if (error) throw error;
-  return data;
+  return data.map(({ image_path, image_alt, image_w, image_h, ...u }) => image_path && image_w && image_h
+    ? { ...u, image: { src: c.storage.from(UPDATE_PHOTOS).getPublicUrl(image_path).data.publicUrl, alt: image_alt ?? u.title, width: image_w, height: image_h } }
+    : u);
 }, ['updates'], { tags: ['updates'], revalidate: 60 });
 
 export { DEMO };

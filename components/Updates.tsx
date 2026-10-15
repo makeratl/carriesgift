@@ -32,6 +32,8 @@ export default function Updates({ updates }: { updates: Update[] }) {
             </div>
             <div className={s.updateTitle}>{u.title}</div>
             <div className={s.updateBody}>{u.body}</div>
+            {u.image && <Image src={u.image.src} alt={u.image.alt} width={u.image.width} height={u.image.height}
+              sizes="(max-width: 520px) 90vw, 560px" className={s.updateImg} />}
           </article>
         ))}
       </div>

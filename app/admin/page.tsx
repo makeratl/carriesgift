@@ -3,8 +3,9 @@ import { db } from '@/lib/supabase/admin';
 import { currentAdmin } from '@/lib/supabase/server';
 import { fmtUSD } from '@/lib/config';
 import { getLiveRaised } from '@/lib/data';
-import { deleteUpdate, postUpdate, saveStats, setGiftHidden, setNoteHidden, signOut } from './actions';
+import { deleteUpdate, saveStats, setGiftHidden, setNoteHidden, signOut } from './actions';
 import LoginForm from './LoginForm';
+import UpdateForm from './UpdateForm';
 import a from './admin.module.css';
 
 export const dynamic = 'force-dynamic';
@@ -75,19 +76,11 @@ export default async function AdminPage() {
 
       <section className={a.card}>
         <h2>Post an update</h2>
-        <form action={postUpdate} className={a.col}>
-          <div className={a.row}>
-            <select name="who" defaultValue={email.includes('carrie') ? 'Carrie' : 'Steven'} className={a.input}><option>Steven</option><option>Carrie</option></select>
-            <input name="date_label" placeholder="Date label (default: today)" className={a.input} />
-          </div>
-          <input name="title" required placeholder="Title" className={a.input} />
-          <textarea name="body" required rows={4} placeholder="What's new?" className={a.input} />
-          <div><button className={a.btn}>Post</button></div>
-        </form>
+        <UpdateForm defaultWho={email.includes('carrie') ? 'Carrie' : 'Steven'} />
         <ul className={a.list}>
           {updates.data?.map(u => (
             <li key={u.id}>
-              <div><b>{u.title}</b> <span className={a.muted}>· {u.who} · {u.date_label}</span><div>{u.body}</div></div>
+              <div><b>{u.title}</b> <span className={a.muted}>· {u.who} · {u.date_label}{u.image_path ? ' · with photo' : ''}</span><div>{u.body}</div></div>
               <form action={deleteUpdate}><input type="hidden" name="id" value={u.id} /><button className={a.link}>Delete</button></form>
             </li>
           ))}

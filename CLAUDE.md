@@ -50,7 +50,8 @@ Pull again right before pushing. Never force-push, rewrite history, or delete br
 
 ## Not done through code
 - **Posting an update** (the Updates section): Carrie does this at https://kidney.carrieburns.net/admin, signing in
-  with her email link. No code or push needed.
+  with her email link. She can attach one photo per update right from her phone, with a short description.
+  No code or push needed. For a photo that belongs with a post, this is the way, not the gallery.
 - Gift totals, hiding wall notes, hiding gifts: also `/admin`.
 
 ## Leave alone unless Steven says otherwise
