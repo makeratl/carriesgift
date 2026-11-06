@@ -29,7 +29,7 @@ export function timelineStatuses(today: string): Status[] {
   return [
     'done', 'done', 'done', 'done',
     postSurgery ? 'done' : 'next',
-    postSurgery ? 'next' : 'ahead',
     bdayPassed ? 'done' : 'ahead',
+    postSurgery ? 'next' : 'ahead',
   ];
 }

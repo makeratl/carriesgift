@@ -6,7 +6,7 @@ import { SITE_URL } from '@/lib/config';
 
 // Static share card (texts, iMessage, Facebook, WhatsApp). Rendered once at build.
 // Output as JPEG: a photo in a PNG is ~450KB, and WhatsApp drops previews over ~300KB.
-export const alt = "Carrie is giving a kidney to someone she's never met. Add a bead to her birthday necklace.";
+export const alt = "Carrie gave a kidney to someone she'd never met. Add a bead to her birthday necklace.";
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/jpeg';
 
@@ -33,7 +33,7 @@ export default async function Image() {
         <div style={{ display: 'flex', flexDirection: 'column', flex: 1, paddingRight: 40 }}>
           <div style={{ fontFamily: 'Caveat', fontSize: 44, color: '#c22a72', transform: 'rotate(-2deg)', marginBottom: 6 }}>for her birthday, Nov 3</div>
           <div style={{ fontSize: 68, fontWeight: 800, lineHeight: 1.02, letterSpacing: -2.2 }}>
-            Carrie is giving a kidney to someone she&apos;s never met.
+            Carrie gave a kidney to someone she&apos;d never met.
           </div>
           <div style={{ display: 'flex', position: 'relative', width: 540, height: 80, marginTop: 30 }}>
             <svg width="540" height="80" style={{ position: 'absolute', left: 0, top: 0 }}>

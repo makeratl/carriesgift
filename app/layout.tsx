@@ -9,7 +9,7 @@ const figtree = Figtree({ subsets: ['latin'], weight: ['400', '500', '600', '700
 const caveat = Caveat({ subsets: ['latin'], weight: ['500', '700'], variable: '--font-caveat' });
 
 const title = "Carrie's Gift: string her a birthday necklace";
-const description = "Carrie is giving a kidney to someone she's never met. For her birthday, add a bead to her necklace, register as a donor, or sign her wall.";
+const description = "Carrie gave a kidney to someone she'd never met. For her birthday, add a bead to her necklace, register as a donor, or sign her wall.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

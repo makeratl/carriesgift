@@ -16,7 +16,11 @@ export default function Updates({ updates }: { updates: Update[] }) {
       <div>
         <div className={`hand ${s.kickerM}`}>from the recovery couch</div>
         <h2 className="h2">Updates from Steven and Carrie</h2>
-        <p className={s.intro}>Short notes before and after surgery. Carrie may add her own once she&apos;s back on her feet.</p>
+        <p className={s.intro}>
+          Short notes before and after surgery. Ongoing recovery progress since there&apos;s not as much couch time LOL. Most of these are also on Carrie&apos;s{' '}
+          <a href="https://www.instagram.com/filmfunatl/" target="_blank" rel="noopener">Instagram</a> &amp;{' '}
+          <a href="https://www.facebook.com/filmfunatl/" target="_blank" rel="noopener">Facebook</a>.
+        </p>
         <figure className={s.updatePhoto}>
           <Image src={checkup} alt="Carrie grinning while wearing a blood pressure monitor" placeholder="blur" sizes="(max-width: 520px) 80vw, 300px" />
           <figcaption className="hand">pre-op checks, mostly smiles ;)</figcaption>

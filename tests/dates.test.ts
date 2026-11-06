@@ -22,7 +22,7 @@ describe('dates', () => {
   it('advances the timeline', () => {
     expect(timelineStatuses('2026-10-13')).toEqual(['done', 'done', 'done', 'done', 'next', 'ahead', 'ahead']);
     expect(timelineStatuses('2026-10-19')).toEqual(['done', 'done', 'done', 'done', 'next', 'ahead', 'ahead']);
-    expect(timelineStatuses('2026-10-20')).toEqual(['done', 'done', 'done', 'done', 'done', 'next', 'ahead']);
-    expect(timelineStatuses('2026-11-03')).toEqual(['done', 'done', 'done', 'done', 'done', 'next', 'done']);
+    expect(timelineStatuses('2026-10-20')).toEqual(['done', 'done', 'done', 'done', 'done', 'ahead', 'next']);
+    expect(timelineStatuses('2026-11-03')).toEqual(['done', 'done', 'done', 'done', 'done', 'done', 'next']);
   });
 });

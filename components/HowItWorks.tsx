@@ -5,7 +5,7 @@ import { withLinks } from './withLinks';
 export default function HowItWorks() {
   return (
     <section id="story" className={`wrap ${s.story}`}>
-      <div className={`hand ${s.kickerT}`}>how one kidney helps two people</div>
+      <div className={`hand ${s.kickerT}`}>how one kidney helps two (or more) people</div>
       <h2 className="h2">The voucher swap, in plain words</h2>
       <div className={s.steps}>
         {STEPS.map(st => (

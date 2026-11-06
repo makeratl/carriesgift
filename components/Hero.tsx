@@ -9,9 +9,9 @@ export default function Hero() {
     <section id="top" className={`wrap ${styles.hero}`}>
       <div>
         <div className={`hand ${styles.kicker}`}>for her birthday, Nov 3</div>
-        <h1 className={styles.h1}>Carrie is giving a kidney to someone she&apos;s never met.</h1>
+        <h1 className={styles.h1}>Carrie gave a kidney to someone she&apos;d never met.</h1>
         <p className={styles.lede}>
-          She wasn&apos;t a match for her friend Juliette, who needs a kidney, but with a <a href="https://www.kidneyregistry.com/for-donors/voucher-program/" target="_blank" rel="noopener">voucher donation</a> she can still help. By donating to a stranger, she moves her friend up the list for a living donor kidney of her own. Surgery is October 20. For her birthday, we&apos;re stringing her a necklace of gifts in her name and helping educate.
+          She wasn&apos;t a match for her friend Juliette, who still needs a kidney, but with a <a href="https://www.kidneyregistry.com/for-donors/voucher-program/" target="_blank" rel="noopener">voucher donation</a> she can still help. By donating to a stranger, she moves her friend up the list for a living donor kidney of her own. Surgery was October 20th. For her birthday on November 3rd, we&apos;re stringing her a necklace of gifts in her name and helping educate.
         </p>
         <div className={styles.buttons}>
           <GiftButton from="hero" className={`btn-primary ${styles.primary}`}>Add a bead: give $100</GiftButton>
