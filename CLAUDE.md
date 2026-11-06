@@ -39,19 +39,13 @@ Pull again right before pushing. Never force-push, rewrite history, or delete br
   - `FAQ`: questions and answers. Answers can link with `[link text](https://...)`.
   - `FACTS`: the big numbers next to the FAQ.
   - `LINKS`: the "Join her" cards. `STEPS`: how the voucher program works.
-  - `GALLERY_SLOTS`: photos in "Along the way" (see below).
 - Charity name, goal and share message: `lib/config.ts`. Surgery and birthday dates: `lib/dates.ts`.
 - Page sections are in `components/` (one file each, e.g. `Hero.tsx`, `Timeline.tsx`).
-
-## Adding photos to "Along the way"
-1. Resize to about 1200px on the long side, save as `.jpg` in `public/gallery/` with a simple name (`hospital-day.jpg`).
-2. In `lib/content.ts`, add `src: '/gallery/hospital-day.jpg'` to the matching `GALLERY_SLOTS` entry, or add a new
-   `{ label: '...', src: '...' }` entry. The label is the photo's alt text, so describe the photo.
 
 ## Not done through code
 - **Posting an update** (the Updates section): Carrie does this at https://kidney.carrieburns.net/admin, signing in
   with her email link. She can attach one photo per update right from her phone, with a short description.
-  No code or push needed. For a photo that belongs with a post, this is the way, not the gallery.
+  No code or push needed. Photos go with posts this way; there's no separate photo gallery.
 - Gift totals, hiding wall notes, hiding gifts: also `/admin`.
 
 ## Leave alone unless Steven says otherwise

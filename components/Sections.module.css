@@ -74,13 +74,3 @@
 .registerBtn { color: var(--ink); border: 0; border-radius: 999px; padding: 12px 20px; font-weight: 700; transition: background .2s; }
 .registerBtn:disabled { opacity: .7; cursor: wait; }
 .registerHint { font-size: 15px; color: #cfc6b6; text-wrap: pretty; }
-
-/* Gallery */
-.gallery { padding-bottom: clamp(64px, 9vw, 88px); }
-.galleryGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr)); grid-auto-rows: 180px; gap: 14px; margin-top: 24px; }
-.galleryHero { grid-column: span 2; grid-row: span 2; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-.gallerySlot {
-  border-radius: 12px; background: repeating-linear-gradient(135deg, #efe6d3 0 10px, #f7f1e4 10px 20px);
-  display: grid; place-items: center; font: 12px ui-monospace, Menlo, monospace; color: #8a7d66; text-align: center; padding: 8px;
-}
-.galleryPhoto { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }

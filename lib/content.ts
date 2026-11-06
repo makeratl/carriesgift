@@ -45,11 +45,6 @@ export const STEPS = [
   { n: 3, bg: C.m, fg: '#fff', title: 'Two lives transformed', body: "One act of generosity leads to two transplants, and sometimes a whole chain of them (if sites like this one do their job). It doesn't cost anything to [find out if you can donate](https://www.kidneyregistry.com/for-donors/kidney-donation-blog/does-it-cost-anything-to-get-tested-as-a-living-kidney-donor/)!" },
 ];
 
-// Add `src: '/gallery/xyz.jpg'` as Steven's photos come in.
-export const GALLERY_SLOTS: { label: string; src?: string }[] = [
-  { label: 'training walk' }, { label: 'hospital day' }, { label: 'recovery' }, { label: 'birthday' },
-];
-
 export const NOTE_COLORS = ['#fbe08a', '#bfe9e7', '#f8c6dc'];
 export const NOTE_ROTS = ['-2deg', '1.5deg', '-1deg', '2deg'];
 

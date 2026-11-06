@@ -1,5 +1,4 @@
 import Footer from '@/components/Footer';
-import Gallery from '@/components/Gallery';
 import Hero from '@/components/Hero';
 import HowItWorks from '@/components/HowItWorks';
 import JoinHer from '@/components/JoinHer';
@@ -29,7 +28,6 @@ export default async function Home() {
         <Learn />
         <JoinHer />
         <Wall initialNotes={notes} hasMore={notes.length === PAGE_SIZE} />
-        <Gallery />
       </main>
       <Footer />
     </SiteProvider>
