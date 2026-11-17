@@ -50,7 +50,8 @@ Pull again right before pushing. Never force-push, rewrite history, or delete br
 
 ## Leave alone unless Steven says otherwise
 - `.env*` files, secrets, API keys. Never commit or print them.
-- `supabase/`, `app/admin/`, `app/api/`, `app/auth/`, `lib/rallybound.ts`, `lib/data.ts`, `proxy.ts`: data, login and the
+- `db/`, `supabase/`, `app/admin/`, `app/api/`, `app/photos/`, `lib/db.ts`, `lib/auth.ts`, `lib/rallybound.ts`, `lib/data.ts`,
+  `proxy.ts`: data, login and the
   live donation total.
 - Dependencies (`package.json`) and `next.config.ts`.
 If a request needs one of these, explain that and suggest asking Steven.

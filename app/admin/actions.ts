@@ -3,15 +3,15 @@
 import { updateTag } from 'next/cache';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { MAX_UPLOAD, UPDATE_PHOTOS, processPhoto } from '@/lib/photo';
-import { db } from '@/lib/supabase/admin';
-import { adminEmails, authClient, currentAdmin } from '@/lib/supabase/server';
+import { MAX_UPLOAD, processPhoto } from '@/lib/photo';
+import { db } from '@/lib/db';
+import { adminEmails, auth, currentAdmin } from '@/lib/auth';
 
 async function requireAdmin() {
   const email = await currentAdmin();
   if (!email) redirect('/admin');
   const c = db();
-  if (!c) throw new Error('Supabase is not configured.');
+  if (!c) throw new Error('The database is not configured.');
   return c;
 }
 
@@ -24,25 +24,25 @@ export async function sendMagicLink(_: unknown, form: FormData): Promise<{ sent:
   if (!adminEmails().includes(email)) return ok;
   const h = await headers();
   const origin = h.get('origin') ?? `${h.get('x-forwarded-proto') ?? 'https'}://${h.get('host')}`;
-  const { error } = await (await authClient()).auth.signInWithOtp({
-    email, options: { emailRedirectTo: `${origin}/auth/callback`, shouldCreateUser: true },
-  });
-  if (error) return { sent: false, error: error.message };
+  if (!auth) return { sent: false, error: 'Sign-in is not configured.' };
+  // The server SDK supports magic links at runtime (sign-in/magic-link) but its types don't list it yet.
+  const signIn = auth.signIn as typeof auth.signIn & {
+    magicLink(o: { email: string; callbackURL: string }): Promise<{ error: { message?: string } | null }>;
+  };
+  const { error } = await signIn.magicLink({ email, callbackURL: `${origin}/admin` });
+  if (error) return { sent: false, error: error.message ?? 'Could not send the link.' };
   return ok;
 }
 
 export async function signOut() {
-  await (await authClient()).auth.signOut();
+  await auth?.signOut();
   redirect('/admin');
 }
 
 export async function saveStats(form: FormData) {
   const c = await requireAdmin();
-  const { error } = await c.from('stats').update({
-    raised: int(form.get('raised')), gifts_offset: int(form.get('gifts_offset')),
-    registered_offset: int(form.get('registered_offset')), updated_at: new Date().toISOString(),
-  }).eq('id', 1);
-  if (error) throw error;
+  await c`update stats set raised = ${int(form.get('raised'))}, gifts_offset = ${int(form.get('gifts_offset'))},
+    registered_offset = ${int(form.get('registered_offset'))}, updated_at = now() where id = 1`;
   updateTag('stats');
 }
 
@@ -63,16 +63,18 @@ export async function postUpdate(_: unknown, form: FormData): Promise<{ ok?: boo
     try { photo = await processPhoto(Buffer.from(await file.arrayBuffer())); }
     catch { return { error: 'Couldn\u2019t read that photo. Try a JPEG or PNG.' }; }
     const path = `${crypto.randomUUID()}.jpg`;
-    const up = await c.storage.from(UPDATE_PHOTOS).upload(path, photo.data, { contentType: 'image/jpeg', cacheControl: '31536000' });
-    if (up.error) return { error: `Photo upload failed: ${up.error.message}` };
+    try { await c`insert into photos (path, data) values (${path}, ${photo.data})`; }
+    catch { return { error: 'Photo upload failed. Try again?' }; }
     const alt = String(form.get('image_alt') ?? '').trim().slice(0, 300) || title;
     image = { image_path: path, image_alt: alt, image_w: photo.width, image_h: photo.height };
   }
 
-  const { error } = await c.from('updates').insert({ who, title, body, date_label, ...image });
-  if (error) {
-    if (image) await c.storage.from(UPDATE_PHOTOS).remove([image.image_path]);
-    return { error: error.message };
+  try {
+    await c`insert into updates (who, title, body, date_label, image_path, image_alt, image_w, image_h)
+      values (${who}, ${title}, ${body}, ${date_label}, ${image?.image_path ?? null}, ${image?.image_alt ?? null}, ${image?.image_w ?? null}, ${image?.image_h ?? null})`;
+  } catch {
+    if (image) await c`delete from photos where path = ${image.image_path}`;
+    return { error: 'Could not post the update. Try again?' };
   }
   updateTag('updates');
   return { ok: true };
@@ -80,24 +82,21 @@ export async function postUpdate(_: unknown, form: FormData): Promise<{ ok?: boo
 
 export async function deleteUpdate(form: FormData) {
   const c = await requireAdmin();
-  const { data, error } = await c.from('updates').delete().eq('id', String(form.get('id'))).select('image_path');
-  if (error) throw error;
-  const paths = (data ?? []).map(r => r.image_path).filter(Boolean);
-  if (paths.length) await c.storage.from(UPDATE_PHOTOS).remove(paths);
+  const rows = await c`delete from updates where id = ${String(form.get('id'))} returning image_path`;
+  const paths = rows.map(r => r.image_path).filter(Boolean);
+  if (paths.length) await c`delete from photos where path = any(${paths})`;
   updateTag('updates');
 }
 
 export async function setGiftHidden(form: FormData) {
   const c = await requireAdmin();
-  const { error } = await c.from('gifts').update({ hidden: form.get('hidden') === 'true' }).eq('id', String(form.get('id')));
-  if (error) throw error;
+  await c`update gifts set hidden = ${form.get('hidden') === 'true'} where id = ${String(form.get('id'))}`;
   updateTag('stats');
 }
 
 export async function setNoteHidden(form: FormData) {
   const c = await requireAdmin();
-  const { error } = await c.from('notes').update({ hidden: form.get('hidden') === 'true' }).eq('id', String(form.get('id')));
-  if (error) throw error;
+  await c`update notes set hidden = ${form.get('hidden') === 'true'} where id = ${String(form.get('id'))}`;
   updateTag('notes');
   updateTag('stats');
 }
