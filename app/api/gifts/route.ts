@@ -1,7 +1,7 @@
 import { revalidateTag } from 'next/cache';
 import { NOTE_MAX } from '@/lib/config';
 import { cleanName, ipHash, isBot, noteError, rateLimited } from '@/lib/guard';
-import { db } from '@/lib/supabase/admin';
+import { db } from '@/lib/db';
 
 // Honor-system "Yes, I gave" confirmations. Counts toward the gift tally only;
 // the necklace fill comes from the charity's real total.
@@ -29,13 +29,12 @@ export async function POST(req: Request) {
 
   let note = null;
   if (body) {
-    const { data, error } = await c.from('notes').insert({ name, body, ip_hash, via_gift: true })
-      .select('id, name, body, created_at, via_gift').single();
-    if (error) return Response.json({ error: 'Could not pin your note. Try again?' }, { status: 500 });
-    note = data;
+    try { [note] = await c`insert into notes (name, body, ip_hash, via_gift) values (${name}, ${body}, ${ip_hash}, true)
+      returning id, name, body, created_at, via_gift`; }
+    catch { return Response.json({ error: 'Could not pin your note. Try again?' }, { status: 500 }); }
   }
-  const { error } = await c.from('gifts').insert({ amount, name, ip_hash, note_id: note?.id ?? null });
-  if (error) return Response.json({ error: 'Could not count your gift. Try again?' }, { status: 500 });
+  try { await c`insert into gifts (amount, name, ip_hash, note_id) values (${amount}, ${name}, ${ip_hash}, ${note?.id ?? null})`; }
+  catch { return Response.json({ error: 'Could not count your gift. Try again?' }, { status: 500 }); }
 
   revalidateTag('stats', { expire: 0 });
   if (note) revalidateTag('notes', { expire: 0 });

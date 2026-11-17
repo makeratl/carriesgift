@@ -2,7 +2,7 @@ import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { getStats } from '@/lib/data';
 import { isBot } from '@/lib/guard';
-import { db } from '@/lib/supabase/admin';
+import { db } from '@/lib/db';
 
 // Readable by the page (not httpOnly) so the button can show its state on a
 // static page. The token only lets this browser undo its own registration.
@@ -23,8 +23,8 @@ export async function POST() {
   const token = crypto.randomUUID();
   const c = db();
   if (c) {
-    const { error } = await c.from('registrations').insert({ token });
-    if (error) return Response.json({ error: 'Could not count you. Try again?' }, { status: 500 });
+    try { await c`insert into registrations (token) values (${token})`; }
+    catch { return Response.json({ error: 'Could not count you. Try again?' }, { status: 500 }); }
   }
   store.set(COOKIE, token, { maxAge: YEAR, sameSite: 'lax', secure: process.env.NODE_ENV === 'production', path: '/' });
   return respond();
@@ -33,7 +33,8 @@ export async function POST() {
 export async function DELETE() {
   const store = await cookies();
   const token = store.get(COOKIE)?.value;
-  if (token) await db()?.from('registrations').delete().eq('token', token);
+  const c = db();
+  if (token && c) await c`delete from registrations where token = ${token}`;
   store.delete(COOKIE);
   return respond();
 }

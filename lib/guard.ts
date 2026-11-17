@@ -1,6 +1,6 @@
 import 'server-only';
 import { createHash } from 'node:crypto';
-import type { SupabaseClient } from '@supabase/supabase-js';
+import type { Sql } from './db';
 import { checkBotId } from 'botid/server';
 import { RegExpMatcher, englishDataset, englishRecommendedTransformers } from 'obscenity';
 
@@ -29,8 +29,10 @@ export function noteError(body: string, name: string, max: number) {
 }
 
 /** True if this IP has written `limit` rows to `table` in the last `minutes`. */
-export async function rateLimited(c: SupabaseClient, table: 'notes' | 'gifts', ip_hash: string, limit: number, minutes = 10) {
+export async function rateLimited(c: Sql, table: 'notes' | 'gifts', ip_hash: string, limit: number, minutes = 10) {
   const since = new Date(Date.now() - minutes * 60_000).toISOString();
-  const { count } = await c.from(table).select('id', { count: 'exact', head: true }).eq('ip_hash', ip_hash).gte('created_at', since);
-  return (count ?? 0) >= limit;
+  const [{ n }] = table === 'notes'
+    ? await c`select count(*)::int as n from notes where ip_hash = ${ip_hash} and created_at >= ${since}`
+    : await c`select count(*)::int as n from gifts where ip_hash = ${ip_hash} and created_at >= ${since}`;
+  return n >= limit;
 }
